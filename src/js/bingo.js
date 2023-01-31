@@ -1,14 +1,17 @@
 var arGame = []; // Create a new array
-var strGame = ""; // Create a string to hold the HTML that you want to insert into the document.
+var strGame = ""; // Create a string to hold the HTML to insert into the document.
 
 function initGame (){
+    // get bingo card header
+    getHeaderRow()
+ 
     // for each row
     for (y = 0; y < 5; y++){
         arGame [y] = [];
         // for each column
         for (x = 0; x < 5; x++){
             // init board to all zero's
-            arGame [y][x] = 0;
+            arGame [y][x] = randomNumberRange(0,50);
             strGame = strGame + "<a class ='btn btn-info bingo' id='x"+x+"-y"+y+"' onClick= 'selectButton ("+x+", "+y+")' >" +arGame[y][x]+ "</a>";
             }
         strGame = strGame + "<br>";
@@ -88,4 +91,8 @@ function checkForWinDiag(){
         initGame();
     }
     
+}
+
+function randomNumberRange(min, max) {
+    return Math.floor(Math.random()*(max-min)) + min;
 }
