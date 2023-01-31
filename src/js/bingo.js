@@ -6,8 +6,7 @@ function initGame (){
         arGame [y] = [];
         for (x = 0; x < 5; x++){
             arGame [y][x] = 0;
-            // orig
-            strGame = strGame + "<a class ='btn btn-info bingo' id='"+x+"-"+y+"' onClick= 'selectButton ("+x+", "+y+")' >" +arGame[y][x]+ "</a>";
+            strGame = strGame + "<a class ='btn btn-info bingo' id='x"+x+"-y"+y+"' onClick= 'selectButton ("+x+", "+y+")' >" +arGame[y][x]+ "</a>";
             }
         strGame = strGame + "<br>";
     }
@@ -17,13 +16,13 @@ function initGame (){
 
 function selectButton (xVal, yVal){
     var strElementId;
-    
-    strElementId = xVal + "-" + yVal;
+    strElementId = 'x' + xVal + "-y" + yVal
+    // console.log('strElementId:' + strElementId)
     document.getElementById(strElementId).classList.remove('btn-info');
     document.getElementById(strElementId).classList.add('btn-danger');
-    // console.log('yVal:' + yVal)
-    // console.log('xVal:' + xVal)
-    arGame[yVal][xVal] = 1;
+    arGame[xVal][yVal] = 1;
+    // console.log('this:' + arGame[xVal][yVal])
+    document.getElementById(strElementId).innerHTML = 1;
     
     checkForWinRow();
     checkForWinCol();
