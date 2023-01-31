@@ -15,7 +15,16 @@ body {
     line-height: 0;
 }
 
+
 a[class='btn btn-info bingo'],a[class='btn btn-danger bingo'] {
+    width: 75px;
+    height: 75px;
+    display: table-cell;
+    vertical-align: middle;
+    text-align: center;
+}
+
+a[class='btn btn-secondary bingo'] {
     width: 75px;
     height: 75px;
     display: table-cell;

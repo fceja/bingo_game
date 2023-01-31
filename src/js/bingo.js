@@ -17,13 +17,22 @@ function initGame (){
     strGame = "";
 }
 
+function getHeaderRow () {
+    strGame = strGame + (
+        "<a class ='btn btn-secondary bingo'>B</a>" +
+        "<a class ='btn btn-secondary bingo'>I</a>" +
+        "<a class ='btn btn-secondary bingo'>N</a>" +
+        "<a class ='btn btn-secondary bingo'>G</a>" +
+        "<a class ='btn btn-secondary bingo'>O</a><br>"
+    );
+}
+
 function selectButton (xVal, yVal){
     var strElementId = 'x' + xVal + "-y" + yVal
     
     // update btn color and update to selected 
     document.getElementById(strElementId).classList.replace('btn-info', 'btn-danger');
     arGame[xVal][yVal] = 1;
-    document.getElementById(strElementId).innerHTML = 1;
 
     // check if game won
     checkForWinRow();
