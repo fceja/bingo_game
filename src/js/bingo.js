@@ -21,8 +21,7 @@ function selectButton (xVal, yVal){
     var strElementId = 'x' + xVal + "-y" + yVal
     
     // update btn color and update to selected 
-    document.getElementById(strElementId).classList.remove('btn-info');
-    document.getElementById(strElementId).classList.add('btn-danger');
+    document.getElementById(strElementId).classList.replace('btn-info', 'btn-danger');
     arGame[xVal][yVal] = 1;
     document.getElementById(strElementId).innerHTML = 1;
 
