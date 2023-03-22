@@ -11,5 +11,5 @@ Instructions
 
 <pre>
 2. Open the following file path with web browser:
- <ul><li><b><i>bingo_game/index.html</i></b></li></ul>
+ <ul><li><b><i>~/bingo_game/index.html</i></b></li></ul>
 </pre>
