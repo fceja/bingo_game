@@ -2,7 +2,7 @@
 
 Bingo Card Game using vanilla JavaScript
 
-Instructions
+Installation
 ---
 
 ```
