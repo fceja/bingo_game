@@ -1,7 +1,9 @@
 # bingo_game
 Description
 ---
-Bingo Card Game using vanilla JavaScript
+Bingo Card Game using vanilla JavaScript. 
+
+The game resets after user has selected 5 squares in a row, column, or diagonal.
 
 Installation
 ---
