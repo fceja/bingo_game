@@ -1,5 +1,6 @@
 # bingo_game
-
+Description
+---
 Bingo Card Game using vanilla JavaScript
 
 Installation
