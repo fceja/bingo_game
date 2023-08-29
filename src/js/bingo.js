@@ -1,6 +1,16 @@
 var arGame = []; // create new array
 var strGame = ""; // holds html to insert into doc
 
+async function displayWin() {
+  //   slow down alert pop up
+  await new Promise((resolve) => {
+    setTimeout(resolve, 200);
+  });
+
+  alert("You Win!");
+  initGame(); // reset
+}
+
 function getHeaderRow() {
   // returns "BINGO" header for card
   strGame =
@@ -29,8 +39,15 @@ function initGame() {
       // add btn and value to html string
       strGame =
         strGame +
-        "<a class ='btn btn-info bingo' id='x" + x + "-y" + y +
-        "' onClick= 'selectButton (" + x + ", " + y + ")' >" +
+        "<a class ='btn btn-info bingo' id='x" +
+        x +
+        "-y" +
+        y +
+        "' onClick= 'updateSelection (" +
+        x +
+        ", " +
+        y +
+        ")' >" +
         arGame[y][x] +
         "</a>";
     }
@@ -41,25 +58,7 @@ function initGame() {
   strGame = ""; // reset
 }
 
-async function selectButton(xVal, yVal) {
-  // id attribute for unique <a> tag
-  var strElementId = "x" + xVal + "-y" + yVal;
-
-  // update board square to selected
-  document
-    .getElementById(strElementId)
-    .classList.replace("btn-info", "btn-danger");
-
-  // set btn to selected
-  arGame[xVal][yVal] = 1;
-
-  // check if game won
-  checkForWinRow();
-  checkForWinCol();
-  checkForWinDiag();
-}
-
-async function checkForWinCol() {
+function isColWon() {
   // for each row
   for (yCheck = 0; yCheck < 5; yCheck++) {
     yCheckTotal = 0;
@@ -76,8 +75,27 @@ async function checkForWinCol() {
   }
 }
 
-// async function checkForWinRow(){
-function checkForWinRow() {
+function isDiagonalWon() {
+  // check for diagonal count
+  diagACheckTotal =
+    arGame[0][0] + arGame[1][1] + arGame[2][2] + arGame[3][3] + arGame[4][4];
+  diagBCheckTotal =
+    arGame[4][0] + arGame[3][1] + arGame[2][2] + arGame[1][3] + arGame[0][4];
+
+  // if either diagonal total is 5, game won
+  if (diagACheckTotal == 5 || diagBCheckTotal == 5) {
+    displayWin();
+  }
+}
+
+function isGameWon() {
+  // check if game won
+  isRowWon();
+  isColWon();
+  isDiagonalWon();
+}
+
+function isRowWon() {
   // for each col
   for (xCheck = 0; xCheck < 5; xCheck++) {
     xCheckTotal = 0;
@@ -94,30 +112,25 @@ function checkForWinRow() {
   }
 }
 
-async function displayWin() {
-  // slow down alert pop up
-  await new Promise((resolve) => {
-    setTimeout(resolve, 300);
-  });
+function selectButton(xVal, yVal) {
+  // id attribute for unique <a> tag
+  var strElementId = "x" + xVal + "-y" + yVal;
 
-  alert("You Win!");
-  initGame(); // reset
+  // update board square to selected
+  document
+    .getElementById(strElementId)
+    .classList.replace("btn-info", "btn-danger");
+
+  // set btn to selected
+  arGame[xVal][yVal] = 1;
 }
 
-// async function checkForWinDiag() {
-function checkForWinDiag() {
-  // check for diagonal count
-  diagACheckTotal =
-    arGame[0][0] + arGame[1][1] + arGame[2][2] + arGame[3][3] + arGame[4][4];
-  diagBCheckTotal =
-    arGame[4][0] + arGame[3][1] + arGame[2][2] + arGame[1][3] + arGame[0][4];
-
-  // if either diagonal total is 5, game won
-  if (diagACheckTotal == 5 || diagBCheckTotal == 5) {
-    displayWin();
-  }
+function updateSelection(xVal, yVal) {
+  selectButton(xVal, yVal);
+  isGameWon();
 }
 
+// utils
 function randomNumberRange(min, max) {
   return Math.floor(Math.random() * (max - min)) + min;
 }
