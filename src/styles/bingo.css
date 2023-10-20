@@ -1,5 +1,6 @@
-html, body {
-    min-width: 320px;
+html,
+body {
+  min-width: 320px;
 }
 body {
   width: 100vw;
@@ -24,4 +25,6 @@ a[class="btn btn-secondary bingo"] {
   width: 75px;
   height: 75px;
   display: table-cell;
+  pointer-events: none;
+  cursor: default;
 }
